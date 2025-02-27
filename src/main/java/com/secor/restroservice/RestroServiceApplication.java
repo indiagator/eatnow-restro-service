@@ -1,14 +1,14 @@
-package com.secor.jdev25authservice;
+package com.secor.restroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Jdev25AuthServiceApplication {
+public class RestroServiceApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(Jdev25AuthServiceApplication.class, args);
+        SpringApplication.run(RestroServiceApplication.class, args);
 
     }
 

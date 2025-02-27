@@ -1,4 +1,4 @@
-package com.secor.jdev25authservice;
+package com.secor.restroservice;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

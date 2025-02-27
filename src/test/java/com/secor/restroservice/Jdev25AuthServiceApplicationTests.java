@@ -1,6 +1,5 @@
-package com.secor.jdev25authservice;
+package com.secor.restroservice;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
