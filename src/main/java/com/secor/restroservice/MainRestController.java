@@ -18,6 +18,8 @@ public class MainRestController {
     RestroRepository restroRepository;
     @Autowired
     AuthService authService;
+    @Autowired
+    MenuRepository menuRepository;
 
 
     @PostMapping("create/restro")
@@ -37,6 +39,25 @@ public class MainRestController {
         restroRepository.save(restro);
 
         return ResponseEntity.ok("Restro created successfully");
+    }
+
+    @PostMapping("create/menuitem")
+    public ResponseEntity<?> createMenuItem(@RequestBody MenuItem menuItem,
+                                            @RequestHeader("Authorization") String token)
+    {
+        log.info("Received request to create menu item: {}", menuItem);
+        if(!authService.validateToken(token))
+        {
+            log.info("Invalid token: {}", token);
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+        log.info("Token is valid: {}", token);
+        log.info("Saving menu item: {}", menuItem);
+
+        menuItem.setItemid(String.valueOf(new Random().nextInt(1000)));
+        menuRepository.save(menuItem);
+
+        return ResponseEntity.ok("Menu item created successfully");
     }
 
 }
