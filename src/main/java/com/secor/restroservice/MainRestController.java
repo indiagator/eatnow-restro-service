@@ -20,6 +20,8 @@ public class MainRestController {
     AuthService authService;
     @Autowired
     MenuRepository menuRepository;
+    @Autowired
+    DishRepository dishRepository;
 
 
     @PostMapping("create/restro")
@@ -39,6 +41,23 @@ public class MainRestController {
         restroRepository.save(restro);
 
         return ResponseEntity.ok("Restro created successfully");
+    }
+
+    @PostMapping("/create/dish")
+    public ResponseEntity<?> createDish(@RequestBody Dish dish,
+                             @RequestHeader("Authorization") String token)
+    {
+        if(!authService.validateToken(token))
+        {
+            log.info("Invalid token: {}", token);
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+
+        dish.setDishid(String.valueOf(new Random().nextInt(1000)));
+        dishRepository.save(dish);
+
+        return ResponseEntity.ok("Dish created successfully");
+
     }
 
     @PostMapping("create/menuitem")
